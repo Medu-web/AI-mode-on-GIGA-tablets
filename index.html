@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGA端末AIモード・教員向けインタラクティブガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Calm Harmony (Light Slate background, Dark Slate Text, Blue Accents) -->
+    <!-- Application Structure Plan: A single-page application with a sticky top navigation bar for quick access to four distinct sections: Overview, Teacher's Awareness, Student Guidance, and Next Steps. This thematic structure is chosen over a linear document to allow busy teachers to quickly navigate to the information they need most. The 'Student Guidance' section uses an interactive tab and accordion system to present detailed information without overwhelming the user, promoting focused exploration. -->
+    <!-- Visualization & Content Choices: 1. Google UI Mockup: Report info (AI mode appears on Google) -> Goal (Instantly show what has changed) -> Viz (HTML/CSS diagram) -> Interaction (None, static visual) -> Justification (More impactful and clear than text alone). 2. Key Concepts Cards: Report info (Three key points for teachers) -> Goal (Organize and highlight main takeaways) -> Presentation (3-column responsive card layout) -> Interaction (Subtle hover effects) -> Justification (Breaks up text, improves readability). 3. Interactive Guidance: Report info (Detailed student guidance) -> Goal (Allow exploration of dense information) -> Presentation (Tabs for categories, Accordions for details) -> Interaction (Click to switch tabs and expand/collapse content) -> Justification (Prevents information overload, user-controlled pace). No JS libraries like Chart.js are needed as there is no quantitative data to visualize. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+        }
+        .nav-link.active {
+            font-weight: 600;
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .tab.active {
+            border-color: #2563eb;
+            color: #2563eb;
+            background-color: #dbeafe;
+        }
+        details[open] summary {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <h1 class="text-lg font-bold text-slate-700">GIGA端末AIモード ガイド</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#overview" class="nav-link text-slate-600 hover:text-blue-600 transition-colors border-b-2 border-transparent pb-1">概要</a>
+                    <a href="#awareness" class="nav-link text-slate-600 hover:text-blue-600 transition-colors border-b-2 border-transparent pb-1">教員の認識</a>
+                    <a href="#guidance" class="nav-link text-slate-600 hover:text-blue-600 transition-colors border-b-2 border-transparent pb-1">生徒への指導</a>
+                    <a href="#next-steps" class="nav-link text-slate-600 hover:text-blue-600 transition-colors border-b-2 border-transparent pb-1">次のステップ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-4 md:p-8 space-y-16 md:space-y-24">
+        
+        <section id="overview">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-800">GIGA端末・Google検索AIモード出現に関する緊急周知</h2>
+                <p class="mt-4 text-lg text-slate-600">GIGA端末のブラウザに「生成AI」機能が出現しています。</p>
+            </div>
+            
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="text-4xl">🚨</span>
+                    <h3 class="text-xl font-bold text-red-600">【重要】事実上、児童生徒が自由に生成AIを使用できる環境に</h3>
+                </div>
+                <p class="text-slate-700 leading-relaxed">
+                    市内の小中学校に配備されているGIGAスクール端末（Win10 Pro, Dynabook K50）にて、児童生徒が日常的に利用するGoogle検索の結果画面に、生成AI機能（AIモード）が確認されました。この機能はフィルタリング設定とは独立してブラウザ側で提供されており、指導の前提が大きく変化します。
+                </p>
+
+                <div class="mt-8">
+                    <h4 class="font-semibold text-center text-slate-700 mb-4">Google検索画面の変化</h4>
+                    <div class="border-2 border-dashed border-blue-200 rounded-lg p-6 bg-blue-50/50">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="p-3 border-b">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 bg-red-400 rounded-full"></span>
+                                    <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
+                                    <span class="w-3 h-3 bg-green-400 rounded-full"></span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="w-full h-8 bg-slate-200 rounded mb-4"></div>
+                                <div class="flex gap-2 mb-4">
+                                    <div class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold border border-blue-300 ring-2 ring-blue-500 animate-pulse">✨ AIモード</div>
+                                    <div class="px-4 py-2 rounded-full bg-slate-100 text-slate-600">すべて</div>
+                                    <div class="px-4 py-2 rounded-full bg-slate-100 text-slate-600">画像</div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="w-full h-12 bg-slate-100 rounded"></div>
+                                    <div class="w-11/12 h-12 bg-slate-100 rounded"></div>
+                                    <div class="w-10/12 h-20 bg-blue-100 rounded p-3 text-sm text-blue-800">ここにAIによる概要が表示されます...</div>
+                                </div>
+                                <div class="mt-6 border-t pt-4">
+                                     <div class="w-full h-10 bg-slate-200 rounded-full p-2 flex items-center text-slate-500">💬 AIに追加で質問する...</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-slate-500 mt-4">検索結果の上部に「AIモード」タブ、下部に「チャット入力窓」が出現します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awareness">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-800">現場の教職員が認識すべきこと</h2>
+                <p class="mt-4 text-lg text-slate-600">指導の前提が変化しました。3つの重要なポイントを解説します。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🔑</div>
+                    <h3 class="font-bold text-lg mb-2">1. 「事実上の利用解禁」状態</h3>
+                    <p class="text-slate-600 text-sm">児童生徒はGIGA端末からいつでも生成AIを活用できます。もはや「使わせない」ではなく、<span class="font-bold text-blue-600">「どう指導するか」</span>へのシフトが不可避です。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🔄</div>
+                    <h3 class="font-bold text-lg mb-2">2. 指導の前提が変わった</h3>
+                    <p class="text-slate-600 text-sm">Google検索という日常ツールにAIが統合され、<span class="font-bold text-blue-600">「当たり前にあるツール」</span>として指導する必要があります。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🔎</div>
+                    <h3 class="font-bold text-lg mb-2">3. 情報の真偽を問う指導が必須</h3>
+                    <p class="text-slate-600 text-sm">AIの回答を鵜呑みにせず、根拠を確認する<span class="font-bold text-blue-600">クリティカルシンキング</span>を育む指導がこれまで以上に重要になります。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="guidance">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-800">児童生徒への指導・活用のための視点</h2>
+                <p class="mt-4 text-lg text-slate-600">この変化をチャンスと捉え、情報活用能力を育成するための指導ポイントです。</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200">
+                <div class="flex border-b border-slate-200">
+                    <button id="tab-moral" class="tab flex-1 p-4 font-semibold text-center transition-colors border-b-4">⚖️ モラル・倫理</button>
+                    <button id="tab-usage" class="tab flex-1 p-4 font-semibold text-center text-slate-500 transition-colors border-b-4 border-transparent">🛠️ 活用の仕方</button>
+                </div>
+
+                <div id="content-moral" class="p-6 md:p-8 space-y-4">
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">個人情報の保護</span>
+                            <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">AIチャットに<strong class="text-red-600">自分や他者の個人情報（氏名、住所、連絡先など）を絶対に入力しない</strong>よう、具体例を挙げて徹底的に指導してください。</p>
+                        </div>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">著作権と引用</span>
+                             <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">AIが生成した文章やアイデアを「自分のもの」として発表する場合の<strong class="text-blue-600">ルールや引用の必要性</strong>を指導し、安易なコピー＆ペーストを防ぎます。</p>
+                        </div>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">いじめ・差別への加担防止</span>
+                             <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">AIに対して、差別的・不適切な言葉や内容を生成させる行為が<strong class="text-red-600">いじめやハラスメントにつながる</strong>ことを理解させ、倫理観を育みます。</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div id="content-usage" class="p-6 md:p-8 space-y-4 hidden">
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">問いの設計力</span>
+                             <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">目的を達成するためにAIにどのような質問（プロンプト）をすべきか、<strong class="text-blue-600">「良い問い」</strong>を考える力を育成します。試行錯誤するプロセスが重要です。</p>
+                        </div>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">検証力</span>
+                             <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">AIの回答をそのまま使わず、他の検索結果や資料と比較し、<strong class="text-blue-600">情報の正確性や妥当性を検証する</strong>プロセスを指導し、ファクトチェックの習慣をつけさせます。</p>
+                        </div>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors">
+                            <span class="font-semibold">生成と創造</span>
+                             <span class="transform transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 mt-2 bg-slate-50 rounded-b-lg">
+                            <p class="text-slate-700">AIを調べ学習の「答え」ではなく、「アイデア出し」「文章校正」「要約」など、<strong class="text-blue-600">創造的な活動のパートナー</strong>として活用させる実践を試み、思考を深めるツールと位置づけます。</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-800">📣 次のステップ：校内での共有と検討</h2>
+                <p class="mt-4 text-lg text-slate-600">この変化に対応するため、各学校で以下の取り組みをお願いします。</p>
+            </div>
+            
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
+                <h3 class="font-bold text-lg mb-4">✅ 各学校でのアクション</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-4">
+                        <span class="text-blue-500 text-2xl font-bold">1.</span>
+                        <div>
+                            <h4 class="font-semibold">全教職員への共有</h4>
+                            <p class="text-slate-600 text-sm">この現状について、校内研修や職員会議で情報を共有し、教職員全員の認識を統一してください。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                         <span class="text-blue-500 text-2xl font-bold">2.</span>
+                        <div>
+                            <h4 class="font-semibold">利用ルールの暫定検討</h4>
+                            <p class="text-slate-600 text-sm">AIモードの具体的な使い方について、学校としての方針（例：当面は高学年のみ、特定の授業でのみ試行など）を暫定的に定めてください。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="text-blue-500 text-2xl font-bold">3.</span>
+                        <div>
+                            <h4 class="font-semibold">情報教育担当との連携</h4>
+                            <p class="text-slate-600 text-sm">実際の利用事例や困りごとを情報教育担当にご報告ください。市全体での知見共有に繋げます。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="max-w-5xl mx-auto px-8 py-6 text-center text-sm text-slate-400">
+            <p>発行：○○市教育委員会 情報教育担当</p>
+            <p>連絡先： (内線 XXXX)</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabMoral = document.getElementById('tab-moral');
+            const tabUsage = document.getElementById('tab-usage');
+            const contentMoral = document.getElementById('content-moral');
+            const contentUsage = document.getElementById('content-usage');
+            
+            function switchTab(activeTab, inactiveTab, activeContent, inactiveContent) {
+                activeTab.classList.add('active');
+                inactiveTab.classList.remove('active');
+                activeContent.classList.remove('hidden');
+                inactiveContent.classList.add('hidden');
+            }
+
+            tabMoral.addEventListener('click', () => switchTab(tabMoral, tabUsage, contentMoral, contentUsage));
+            tabUsage.addEventListener('click', () => switchTab(tabUsage, tabMoral, contentUsage, contentMoral));
+            
+            switchTab(tabMoral, tabUsage, contentMoral, contentUsage);
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
